@@ -18,18 +18,18 @@ export const MATCH_RULES: MatchRule[] = [
     keywordMatch: /(e[-_]?mail|user[-_]?email|work[-_]?email|contact[-_]?email)/i,
     getValue: (s) => computeTestEmail(s)
   },
-  // 2. First Name ("first_name", "fname", etc.)
+  // 2. First Name ("first", "first_name", "fname", etc.)
   {
     fieldKey: 'first_name',
     autocompleteMatch: (a) => a === 'given-name',
-    keywordMatch: /(first[-_]?name|fname|given[-_]?name|forename)/i,
+    keywordMatch: /(first|fname|given[-_]?name|forename)/i,
     getValue: (s) => s.firstName || 'Alex'
   },
-  // 3. Last Name ("last_name", "lname", etc.)
+  // 3. Last Name ("last", "last_name", "lname", etc.)
   {
     fieldKey: 'last_name',
     autocompleteMatch: (a) => a === 'family-name',
-    keywordMatch: /(last[-_]?name|lname|family[-_]?name|surname)/i,
+    keywordMatch: /(last|lname|family[-_]?name|surname)/i,
     getValue: (s) => s.lastName || 'Morgan'
   },
   // 4. Phone Number (type="tel" or phone keywords)

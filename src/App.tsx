@@ -5,7 +5,7 @@ import { OptionsView } from './components/extension/OptionsView';
 import { ShadowOverlay } from './extension/content/ShadowOverlay';
 import { ContextMenuSimulator } from './extension/content/ContextMenuSimulator';
 import { computeTestEmail, generateDateString } from './extension/engine/dateSuffix';
-import { Zap, Copy, Check, Sliders, LayoutGrid, Calendar, Download, HelpCircle, AlertCircle, Sparkles } from 'lucide-react';
+import { Zap, Copy, Check, Sliders, LayoutGrid, Calendar, Download, HelpCircle, AlertCircle, Sparkles, Terminal } from 'lucide-react';
 import JSZip from 'jszip';
 
 export default function App() {
@@ -247,27 +247,28 @@ export default function App() {
               {/* Local Build & Dev Commands Section */}
               <div className="mt-4 pt-4 border-t border-[#262626]">
                 <div className="font-bold text-sm text-[#F3F3F1] mb-2 flex items-center gap-2">
-                  <span className="text-[#FFB800]">💻</span> How to Build Locally (Terminal)
+                  <Terminal size={15} className="text-[#FFB800]" />
+                  <span>How to Build Locally (Terminal)</span>
                 </div>
                 <div className="space-y-3">
                   <div>
-                    <div className="text-[11px] text-[#A0A09C] mb-1">1. Install dependencies:</div>
-                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2 font-mono text-xs text-[#00D084] select-all">
+                    <div className="text-xs text-[#A0A09C] mb-1">1. Install dependencies:</div>
+                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2.5 font-mono text-sm text-[#00D084] select-all">
                       npm install
                     </div>
                   </div>
                   <div>
-                    <div className="text-[11px] text-[#A0A09C] mb-1">2. Build production assets & extension bundle:</div>
-                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2 font-mono text-xs text-[#00D084] select-all">
+                    <div className="text-xs text-[#A0A09C] mb-1">2. Build production assets & extension bundle:</div>
+                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2.5 font-mono text-sm text-[#00D084] select-all">
                       npm run build
                     </div>
-                    <p className="text-[10px] text-[#777] mt-1">
+                    <p className="text-xs text-[#888884] mt-1.5">
                       This compiles the app and generates the <code className="text-[#FFB800] font-mono">dist/</code> directory containing all extension scripts, HTML, and assets ready for Chrome.
                     </p>
                   </div>
                   <div>
-                    <div className="text-[11px] text-[#A0A09C] mb-1">3. (Optional) Run local dev server:</div>
-                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2 font-mono text-xs text-[#00D084] select-all">
+                    <div className="text-xs text-[#A0A09C] mb-1">3. (Optional) Run local dev server:</div>
+                    <div className="bg-[#101010] border border-[#2A2A2A] rounded p-2.5 font-mono text-sm text-[#00D084] select-all">
                       npm run dev
                     </div>
                   </div>

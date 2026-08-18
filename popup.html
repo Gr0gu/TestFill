@@ -5,76 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevFill QA Auto-Filler</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body {
-      width: 320px;
+      width: 340px;
       background-color: #141414;
       color: #F3F3F1;
-      padding: 12px;
+      padding: 14px;
       user-select: none;
+      font-size: 14px;
     }
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #262626;
-      padding-bottom: 10px;
-      margin-bottom: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .logo-badge {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       background: #FFB800;
-      color: #121212;
-      font-weight: 900;
-      border-radius: 6px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .logo-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: #121212;
+      stroke: #121212;
     }
     .brand-title {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 700;
       color: #F3F3F1;
+      line-height: 1.2;
     }
     .brand-sub {
-      font-size: 10px;
+      font-size: 12px;
       color: #888884;
     }
     .settings-btn {
       background: #222222;
       border: 1px solid #333333;
       color: #A3A3A0;
-      padding: 4px 8px;
+      padding: 6px 10px;
       border-radius: 6px;
-      font-size: 11px;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
     }
     .settings-btn:hover {
       background: #2C2C2C;
       color: #F3F3F1;
     }
+    .settings-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+    }
     .card {
       background: #1A1A1A;
       border: 1px solid #2A2A2A;
       border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
     }
     .card-label {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       color: #888884;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
     .email-box {
       display: flex;
@@ -83,15 +101,16 @@
       background: #121212;
       border: 1px solid #282828;
       border-radius: 6px;
-      padding: 6px 8px;
+      padding: 8px 10px;
       cursor: pointer;
+      transition: border-color 0.15s ease;
     }
     .email-box:hover {
       border-color: rgba(255, 184, 0, 0.5);
     }
     .email-text {
-      font-family: ui-monospace, SFMono-Regular, monospace;
-      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 13px;
       color: #FFB800;
       font-weight: 600;
       overflow: hidden;
@@ -99,56 +118,70 @@
       white-space: nowrap;
     }
     .copy-hint {
-      font-size: 10px;
+      font-size: 12px;
       color: #777777;
+      margin-left: 8px;
     }
     .btn-main {
       width: 100%;
       background: #FFB800;
       color: #121212;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 14px;
       border: none;
-      padding: 10px;
+      padding: 11px;
       border-radius: 8px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      margin-bottom: 6px;
+      gap: 7px;
+      margin-bottom: 8px;
       transition: background 0.15s;
     }
     .btn-main:hover {
       background: #E5A600;
+    }
+    .btn-main svg {
+      width: 15px;
+      height: 15px;
+      fill: #121212;
+      stroke: #121212;
     }
     .btn-secondary {
       width: 100%;
       background: #202020;
       color: #F3F3F1;
       border: 1px solid #333333;
-      font-size: 11px;
-      padding: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px;
       border-radius: 8px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: background 0.15s;
     }
     .btn-secondary:hover {
       background: #282828;
     }
     .status-msg {
-      font-size: 11px;
+      font-size: 13px;
+      font-weight: 600;
       color: #00D084;
       text-align: center;
-      margin-top: 6px;
+      margin-top: 8px;
       display: none;
     }
     .footer {
-      font-size: 10px;
+      font-size: 12px;
       color: #6E6E6A;
       display: flex;
       justify-content: space-between;
-      margin-top: 8px;
-      padding-top: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
       border-top: 1px solid #222222;
     }
   </style>
@@ -156,19 +189,29 @@
 <body>
   <div class="header">
     <div class="brand">
-      <div class="logo-badge">⚡</div>
+      <div class="logo-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
       <div>
         <div class="brand-title">DevFill</div>
         <div class="brand-sub">QA Form Auto-Filler</div>
       </div>
     </div>
-    <button id="openOptions" class="settings-btn">⚙ Settings</button>
+    <button id="openOptions" class="settings-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+      Settings
+    </button>
   </div>
 
   <div class="card">
     <div class="card-label">
       <span>Dynamic Test Email</span>
-      <span id="dateSuffixTag" style="color:#FFB800; font-family: monospace;">+DDMMYYYY</span>
+      <span id="dateSuffixTag" style="color:#FFB800; font-family: monospace; font-size: 13px;">+DDMMYYYY</span>
     </div>
     <div id="copyEmailBox" class="email-box" title="Click to copy dynamic test email">
       <span id="dynamicEmailDisplay" class="email-text">user+test...</span>
@@ -177,11 +220,14 @@
   </div>
 
   <button id="fillFormBtn" class="btn-main">
-    <span>⚡ Fill Form with Test Data</span>
+    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+    </svg>
+    <span>Fill Form with Test Data</span>
   </button>
 
   <button id="fillFocusedBtn" class="btn-secondary">
-    🎯 Fill Focused Input Only
+    Fill Focused Input Only
   </button>
 
   <div id="statusMsg" class="status-msg"></div>

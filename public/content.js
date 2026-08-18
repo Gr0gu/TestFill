@@ -86,13 +86,13 @@
       return computeTestEmail(settings);
     }
 
-    // 2. First Name
-    if (autocomplete === 'given-name' || /(first[-_]?name|fname|given[-_]?name|forename)/i.test(name + ' ' + id + ' ' + placeholder)) {
+    // 2. First Name (checks for "first", "first_name", "fname", etc. in id, name, placeholder)
+    if (autocomplete === 'given-name' || /(first|fname|given[-_]?name|forename)/i.test(name + ' ' + id + ' ' + placeholder)) {
       return settings.firstName || 'Alex';
     }
 
-    // 3. Last Name
-    if (autocomplete === 'family-name' || /(last[-_]?name|lname|family[-_]?name|surname)/i.test(name + ' ' + id + ' ' + placeholder)) {
+    // 3. Last Name (checks for "last", "last_name", "lname", etc. in id, name, placeholder)
+    if (autocomplete === 'family-name' || /(last|lname|family[-_]?name|surname)/i.test(name + ' ' + id + ' ' + placeholder)) {
       return settings.lastName || 'Morgan';
     }
 
@@ -211,43 +211,48 @@
       container.style.cssText = `
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         background: #141414;
         border: 1px solid #2E2E2E;
-        border-radius: 24px;
-        padding: 5px 8px 5px 10px;
+        border-radius: 28px;
+        padding: 6px 10px 6px 12px;
         box-shadow: 0 8px 24px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,184,0,0.25);
         font-family: system-ui, -apple-system, sans-serif;
         color: #F3F3F1;
       `;
 
       const btn = document.createElement('button');
-      btn.textContent = '⚡ DevFill';
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#121212" stroke="#121212" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>DevFill</span>`;
       btn.style.cssText = `
+        display: flex;
+        align-items: center;
         background: #FFB800;
         color: #121212;
         font-weight: 700;
         border: none;
-        border-radius: 18px;
-        padding: 6px 10px;
-        font-size: 11px;
+        border-radius: 20px;
+        padding: 7px 12px;
+        font-size: 13px;
         cursor: pointer;
+        transition: all 0.15s ease;
       `;
       btn.onclick = () => {
         getStoredSettings((curSettings) => {
           const count = executeAutoFill(curSettings, 'active_form');
-          btn.textContent = `✓ Filled ${count}`;
-          setTimeout(() => { btn.textContent = '⚡ DevFill'; }, 2000);
+          btn.innerHTML = `<span>Filled ${count}</span>`;
+          setTimeout(() => { 
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#121212" stroke="#121212" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>DevFill</span>`; 
+          }, 2000);
         });
       };
 
       const emailLabel = document.createElement('span');
       emailLabel.textContent = computeTestEmail(settings);
       emailLabel.style.cssText = `
-        font-size: 10px;
+        font-size: 12px;
         font-family: monospace;
         color: #FFB800;
-        max-width: 140px;
+        max-width: 170px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

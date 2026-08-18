@@ -107,14 +107,14 @@ export const ShadowOverlay: React.FC = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '5px',
-          padding: '6px 10px',
+          gap: '6px',
+          padding: '7px 12px',
           borderRadius: '18px',
-          fontSize: '12px'
+          fontSize: '13px'
         }}
         title={`Auto-Fill Active Form (${settings.keyboardShortcut})`}
       >
-        <Zap size={13} fill="#121212" />
+        <Zap size={14} fill="#121212" />
         <span>DevFill</span>
       </button>
 
@@ -125,14 +125,14 @@ export const ShadowOverlay: React.FC = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '4px',
-          padding: '6px 9px',
+          gap: '5px',
+          padding: '7px 11px',
           borderRadius: '18px',
-          fontSize: '11px'
+          fontSize: '12px'
         }}
         title="Inject into Focused Input"
       >
-        <Crosshair size={12} color="#FFB800" />
+        <Crosshair size={13} color="#FFB800" />
         <span>Focused</span>
       </button>
 
@@ -140,10 +140,10 @@ export const ShadowOverlay: React.FC = () => {
       <div 
         className="font-mono"
         style={{
-          fontSize: '10px',
-          color: '#A3A3A0',
-          padding: '4px 6px',
-          maxWidth: '160px',
+          fontSize: '12px',
+          color: '#D4D4D0',
+          padding: '4px 8px',
+          maxWidth: '190px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap'
@@ -155,11 +155,11 @@ export const ShadowOverlay: React.FC = () => {
 
       {statusToast && (
         <span style={{
-          fontSize: '10px',
+          fontSize: '12px',
           background: '#00D084',
           color: '#121212',
           fontWeight: '700',
-          padding: '3px 7px',
+          padding: '4px 8px',
           borderRadius: '10px'
         }}>
           {statusToast}

@@ -7,13 +7,13 @@ chrome.runtime.onInstalled.addListener(() => {
   try {
     chrome.contextMenus.create({
       id: "devfill-fill-form",
-      title: "⚡ Fill Form with Test Data (DevFill)",
+      title: "Fill Form with Test Data (DevFill)",
       contexts: ["editable", "page", "selection"]
     });
 
     chrome.contextMenus.create({
       id: "devfill-fill-focused",
-      title: "🎯 Fill Focused Input Only",
+      title: "Fill Focused Input Only",
       contexts: ["editable"]
     });
   } catch (e) {
