@@ -1,0 +1,6 @@
+{
+  "name": "DevFill - Test Form Auto-Filler Extension",
+  "description": "Manifest V3 browser extension and QA toolkit for web developers to instantly auto-fill web forms with dynamic test profiles, date suffixes, and robust field heuristics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
