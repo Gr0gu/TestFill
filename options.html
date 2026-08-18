@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFill Settings & Options</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body {
+      background-color: #121212;
+      color: #F3F3F1;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #141414;
+      border: 1px solid #282828;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #262626;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .logo-badge {
+      width: 32px;
+      height: 32px;
+      background: #FFB800;
+      color: #121212;
+      font-weight: 900;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .title { font-size: 16px; font-weight: 700; }
+    .subtitle { font-size: 12px; color: #888884; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #FFB800;
+      letter-spacing: 0.5px;
+      margin: 18px 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .form-group { margin-bottom: 12px; }
+    .label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #D4D4D0;
+      margin-bottom: 4px;
+    }
+    .input {
+      width: 100%;
+      background: #1A1A1A;
+      border: 1px solid #2E2E2E;
+      color: #F3F3F1;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      outline: none;
+    }
+    .input:focus { border-color: #FFB800; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .email-preview {
+      background: #181818;
+      border: 1px solid #2C2C2C;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .email-preview-val { font-family: monospace; font-size: 12px; color: #FFB800; font-weight: 600; }
+    .save-bar {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #262626;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-save {
+      background: #FFB800;
+      color: #121212;
+      font-weight: 700;
+      font-size: 12px;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-save:hover { background: #E5A600; }
+    .save-status { font-size: 11px; color: #00D084; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-badge">⚡</div>
+      <div>
+        <div class="title">DevFill Extension Settings</div>
+        <div class="subtitle">Configure default test profile data & dynamic date suffixes</div>
+      </div>
+    </div>
+
+    <form id="settingsForm">
+      <div class="section-title">📧 Email & Dynamic Date Suffix</div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="label">Base Work Email</label>
+          <input type="email" id="baseEmail" class="input" required placeholder="user@company.com">
+        </div>
+        <div class="form-group">
+          <label class="label">Date Suffix Format</label>
+          <select id="dateSuffixFormat" class="input">
+            <option value="DDMMYYYY">DDMMYYYY (e.g. 18082026)</option>
+            <option value="YYYYMMDD">YYYYMMDD (e.g. 20260818)</option>
+            <option value="YYYY-MM-DD">YYYY-MM-DD (e.g. 2026-08-18)</option>
+            <option value="DD-MM-YYYY">DD-MM-YYYY (e.g. 18-08-2026)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="email-preview">
+        <div>
+          <span style="font-size: 10px; color: #888; text-transform: uppercase;">Computed Dynamic Test Email:</span>
+          <div id="emailPreviewDisplay" class="email-preview-val">user+test...</div>
+        </div>
+      </div>
+
+      <div class="section-title">👤 Default Test Profile Data</div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="label">First Name</label>
+          <input type="text" id="firstName" class="input" placeholder="Alex">
+        </div>
+        <div class="form-group">
+          <label class="label">Last Name</label>
+          <input type="text" id="lastName" class="input" placeholder="Morgan">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="label">Phone Number</label>
+          <input type="tel" id="phone" class="input" placeholder="+1 (555) 234-5678">
+        </div>
+        <div class="form-group">
+          <label class="label">Street Address</label>
+          <input type="text" id="streetAddress" class="input" placeholder="742 Evergreen Terrace">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="label">City</label>
+          <input type="text" id="city" class="input" placeholder="San Francisco">
+        </div>
+        <div class="form-group">
+          <label class="label">ZIP / Postal Code</label>
+          <input type="text" id="zipCode" class="input" placeholder="94107">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="label">Country</label>
+        <input type="text" id="country" class="input" placeholder="United States">
+      </div>
+
+      <div class="section-title">⚡ Controls</div>
+      <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" id="enableFloatingTrigger" style="accent-color: #FFB800; cursor: pointer;">
+        <label for="enableFloatingTrigger" class="label" style="margin: 0; cursor: pointer;">Enable in-page floating auto-fill badge</label>
+      </div>
+
+      <div class="save-bar">
+        <span id="saveStatus" class="save-status">✓ Settings saved successfully!</span>
+        <button type="submit" class="btn-save">Save Settings</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
